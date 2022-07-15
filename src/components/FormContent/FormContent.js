@@ -1,4 +1,5 @@
 import React from 'react';
+import DateNTime from '../steps/DateNTime/DateNTime';
 import PersonalInfo from '../steps/PersonalInfo/PersonalInfo';
 import StationsInfo from '../steps/StationsInfo/StationsInfo';
 import formContentStyles from './FormContent.module.css';
@@ -11,6 +12,7 @@ const FormContent = () => {
         <div className={`${formContentStyles.formInputs} form-inputs`}>
           <PersonalInfo />
           <StationsInfo></StationsInfo>
+          <DateNTime></DateNTime>
         </div>
       </div>
     </div>

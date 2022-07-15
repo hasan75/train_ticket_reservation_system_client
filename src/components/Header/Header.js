@@ -6,7 +6,6 @@ const Header = () => {
   return (
     <Navbar
       className={headerStyle.headerNav}
-      expand='lg'
       variant='light'
       bg='white'
       fixed='top'
