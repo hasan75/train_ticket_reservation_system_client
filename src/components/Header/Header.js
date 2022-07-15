@@ -8,7 +8,7 @@ const Header = () => {
       className={headerStyle.headerNav}
       expand='lg'
       variant='light'
-      bg='light'
+      bg='white'
       fixed='top'
     >
       <Container>

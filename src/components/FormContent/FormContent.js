@@ -1,4 +1,5 @@
 import React from 'react';
+import PersonalInfo from '../steps/PersonalInfo/PersonalInfo';
 import formContentStyles from './FormContent.module.css';
 const FormContent = () => {
   return (
@@ -7,7 +8,7 @@ const FormContent = () => {
     >
       <div className={formContentStyles.formContents}>
         <div className={`${formContentStyles.formInputs} form-inputs`}>
-          <h2>This is one input</h2>
+          <PersonalInfo />
         </div>
       </div>
     </div>
