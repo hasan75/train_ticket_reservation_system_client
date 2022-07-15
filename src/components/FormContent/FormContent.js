@@ -1,5 +1,6 @@
 import React from 'react';
 import PersonalInfo from '../steps/PersonalInfo/PersonalInfo';
+import StationsInfo from '../steps/StationsInfo/StationsInfo';
 import formContentStyles from './FormContent.module.css';
 const FormContent = () => {
   return (
@@ -9,6 +10,7 @@ const FormContent = () => {
       <div className={formContentStyles.formContents}>
         <div className={`${formContentStyles.formInputs} form-inputs`}>
           <PersonalInfo />
+          <StationsInfo></StationsInfo>
         </div>
       </div>
     </div>

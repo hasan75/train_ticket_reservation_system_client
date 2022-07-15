@@ -53,9 +53,6 @@ const PersonalInfo = () => {
           </div>
         </div>
       </div>
-      <button type='submit' className='btn btn-outline-success ms-5 mt-3'>
-        Submit
-      </button>
     </form>
   );
 };
