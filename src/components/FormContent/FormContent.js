@@ -1,5 +1,6 @@
 import React from 'react';
 import DateNTime from '../steps/DateNTime/DateNTime';
+import Note from '../steps/Note/Note';
 import PersonalInfo from '../steps/PersonalInfo/PersonalInfo';
 import StationsInfo from '../steps/StationsInfo/StationsInfo';
 import TicketFareAmount from '../steps/TicketFareAmount/TicketFareAmount';
@@ -11,8 +12,7 @@ const FormContent = () => {
     >
       <div className={formContentStyles.formContents}>
         <div className={`${formContentStyles.formInputs} form-inputs`}>
-          <PersonalInfo />
-          <TicketFareAmount />
+          <Note></Note>
         </div>
       </div>
     </div>
