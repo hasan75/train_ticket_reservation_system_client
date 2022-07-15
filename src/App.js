@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className='App'>
-      <h2>Train Ticket Reservation</h2>
+      <Header />
+      <h2 className=''>Train Ticket Reservation</h2>
     </div>
   );
 }
