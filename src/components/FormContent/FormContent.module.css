@@ -1,0 +1,22 @@
+.formContainer{
+    background-color: #EDF2F7;
+    height: 100vh;
+    padding-top: 5rem;
+}
+.formContents{
+    width: 1440px;
+    min-height: 80vh;
+    border-radius: .65rem;
+    background: #fff;
+}
+.formInputs{
+    width: 1440;
+    padding: 2.3rem;
+    height: 100%;
+}
+
+@media screen and (max-width: 1439px) {
+    .formContainer{
+        width: 1500px;
+    }
+}

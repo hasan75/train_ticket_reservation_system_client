@@ -1,9 +1,10 @@
 import React from 'react';
+import FormContent from '../../components/FormContent/FormContent';
 
 const MultiForm = () => {
   return (
     <div className=''>
-      <h2>This is the form</h2>
+      <FormContent />
     </div>
   );
 };

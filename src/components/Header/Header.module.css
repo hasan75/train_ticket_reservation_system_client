@@ -1,7 +1,8 @@
 .headerNav{
-    height:4rem;
+    height: 4rem;
     border-bottom: .2px solid #d4d1d1;
     animation: shadow 3s infinite;
+    background-color: #ffffff !important;  
 }
 @keyframes shadow{
     50%{
