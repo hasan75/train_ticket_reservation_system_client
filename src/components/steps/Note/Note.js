@@ -1,7 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useFormDataContext } from '../../../hooks/useFormDataContext';
+
 const Note = () => {
+  const { formData, setFormValues } = useFormDataContext();
+
   let defaultText = `"
     ,'"" ./\=?!:;
     "",""a"",""b""
@@ -50,7 +54,7 @@ const Note = () => {
   });
 
   const onSubmit = (values) => {
-    console.log(values);
+    setFormValues(values);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -65,6 +69,9 @@ const Note = () => {
           />
         </div>
       </div>
+      <button className='btn btn-primary' type='submit'>
+        Submit
+      </button>
     </form>
   );
 };

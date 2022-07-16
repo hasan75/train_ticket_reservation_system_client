@@ -14,7 +14,6 @@ const FormContent = () => {
       <div className={formContentStyles.formContents}>
         <div className={`${formContentStyles.formInputs} form-inputs`}>
           <Note></Note>
-          <PreviewInfo />
         </div>
       </div>
     </div>
