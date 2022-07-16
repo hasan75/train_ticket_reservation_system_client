@@ -16,8 +16,8 @@ const StepNavigation = () => {
       )}
       {/* back and next navigator buttons  */}
       <div className='d-flex justify-content-between'>
-        <button className='btn btn-outline-secondary'>Back</button>
-        <button className='btn btn-outline-secondary' type='submit'>
+        <button className='btn btn-outline-secondary px-5'>Back</button>
+        <button className='btn btn-outline-secondary px-5' type='submit'>
           Next
         </button>
       </div>

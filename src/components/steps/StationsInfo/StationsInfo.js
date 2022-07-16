@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const StationsInfo = () => {
   const { handleSubmit, register, watch } = useForm({
@@ -11,7 +12,10 @@ const StationsInfo = () => {
     console.log(values);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className='d-flex flex-column justify-content-between w-100'
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className='row d-flex justify-content-center mt-5'>
         {/* from which station  */}
         <div className='col-8 form-group'>
@@ -48,9 +52,11 @@ const StationsInfo = () => {
           </select>
         </div>
       </div>
-      <button type='submit' className='btn btn-outline-primary'>
-        Submit
-      </button>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-8'>
+          <StepNavigation></StepNavigation>
+        </div>
+      </div>
     </form>
   );
 };

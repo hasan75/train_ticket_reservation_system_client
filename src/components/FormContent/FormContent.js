@@ -13,7 +13,12 @@ const FormContent = () => {
     >
       <div className={formContentStyles.formContents}>
         <div className={`${formContentStyles.formInputs} form-inputs d-flex`}>
-          <TicketFareAmount />
+          {/* <TicketFareAmount /> */}
+          {/* <StationsInfo /> */}
+          {/* <DateNTime /> */}
+          {/* <Note />  */}
+          <PersonalInfo />
+          {/* <PreviewInfo /> */}
         </div>
       </div>
     </div>

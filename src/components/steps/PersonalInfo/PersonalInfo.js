@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const PersonalInfo = () => {
   const {
@@ -12,7 +13,10 @@ const PersonalInfo = () => {
     console.log(values);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className='d-flex flex-column justify-content-between w-100'
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className='row d-flex justify-content-center mt-5'>
         {/* for taking name input  */}
         <div className='col-8 form-group'>
@@ -31,7 +35,7 @@ const PersonalInfo = () => {
           <label htmlFor='Gender' className='mb-2 fw-bold'>
             Gender
           </label>
-          <div className='form-check ms-3'>
+          <div className='form-check ms-5'>
             <input
               className='form-check-input'
               type='radio'
@@ -41,7 +45,7 @@ const PersonalInfo = () => {
             />
             <label className='form-check-label'>Male</label>
           </div>
-          <div className='form-check ms-3'>
+          <div className='form-check ms-5'>
             <input
               className='form-check-input'
               type='radio'
@@ -51,6 +55,11 @@ const PersonalInfo = () => {
             />
             <label className='form-check-label'>Female</label>
           </div>
+        </div>
+      </div>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-8'>
+          <StepNavigation></StepNavigation>
         </div>
       </div>
     </form>

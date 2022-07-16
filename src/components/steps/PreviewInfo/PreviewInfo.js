@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const PreviewInfo = () => {
   const {
@@ -49,7 +50,10 @@ const PreviewInfo = () => {
                               `;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className='d-flex flex-column justify-content-between w-100'
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className='row d-flex justify-content-center mt-5'>
         <div className='col-6'>
           <h5>Name: Bill Gates</h5>
@@ -67,6 +71,11 @@ const PreviewInfo = () => {
               value={defaultText}
             ></textarea>
           </div>
+        </div>
+      </div>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-7 mt-4'>
+          <StepNavigation></StepNavigation>
         </div>
       </div>
     </form>

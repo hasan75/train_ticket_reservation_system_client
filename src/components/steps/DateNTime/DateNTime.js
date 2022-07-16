@@ -6,6 +6,7 @@ import './DateNTime.css';
 // date picker imports
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const DateNTime = () => {
   // for default values
@@ -30,7 +31,10 @@ const DateNTime = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className='d-flex flex-column justify-content-between w-100'
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className='row d-flex justify-content-center mt-5'>
         {/* Date input in YYYY-mm-dd format  */}
         <div className='col-8 form-group'>
@@ -62,9 +66,11 @@ const DateNTime = () => {
           />
         </div>
       </div>
-      <button type='submit' className='btn btn-outline-primary'>
-        Submit
-      </button>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-8'>
+          <StepNavigation></StepNavigation>
+        </div>
+      </div>
     </form>
   );
 };

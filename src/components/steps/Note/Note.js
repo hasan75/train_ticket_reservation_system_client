@@ -59,7 +59,7 @@ const Note = () => {
   };
   return (
     <form
-      className='d-flex flex-column justify-content-between h-100'
+      className='d-flex flex-column justify-content-between w-100'
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className='row d-flex justify-content-center mt-5'>
@@ -71,6 +71,11 @@ const Note = () => {
             rows='10'
             {...register('Note', { required: true })}
           />
+        </div>
+      </div>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-8'>
+          <StepNavigation></StepNavigation>
         </div>
       </div>
     </form>
