@@ -6,7 +6,9 @@ import PreviewInfo from '../steps/PreviewInfo/PreviewInfo';
 import StationsInfo from '../steps/StationsInfo/StationsInfo';
 import TicketFareAmount from '../steps/TicketFareAmount/TicketFareAmount';
 import formContentStyles from './FormContent.module.css';
-const FormContent = () => {
+import FormResponse from '../steps/FormResponse/FormResponse';
+import { useFormDataContext } from '../../hooks/useFormDataContext';
+const FormContent = ({ children }) => {
   return (
     <div
       className={`${formContentStyles.formContainer} d-flex align-items-center justify-content-center`}
@@ -17,8 +19,10 @@ const FormContent = () => {
           {/* <StationsInfo /> */}
           {/* <DateNTime /> */}
           {/* <Note />  */}
-          <PersonalInfo />
+          {/* <PersonalInfo /> */}
           {/* <PreviewInfo /> */}
+          {/* <FormResponse /> */}
+          {children}
         </div>
       </div>
     </div>
