@@ -54,7 +54,7 @@ const Note = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='row d-flex justify-content-center'>
+      <div className='row d-flex justify-content-center mt-5'>
         <div className='col-6'>
           <label className='fw-bold mb-2'>Note</label>
           <textarea

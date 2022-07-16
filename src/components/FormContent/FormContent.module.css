@@ -1,7 +1,8 @@
 .formContainer{
     background-color: #EDF2F7;
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 5rem;
+    padding-bottom: 1rem;
 }
 .formContents{
     width: 1440px;
