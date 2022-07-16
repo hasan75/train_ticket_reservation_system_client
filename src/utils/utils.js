@@ -8,6 +8,7 @@ import TicketFareAmount from '../components/steps/TicketFareAmount/TicketFareAmo
 
 const utils = {};
 
+//content of the form as step
 utils.formContentStep = (step, setStep) => {
   let currentStep;
 

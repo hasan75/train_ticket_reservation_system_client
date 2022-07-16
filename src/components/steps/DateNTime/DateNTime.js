@@ -113,7 +113,19 @@ const DateNTime = ({ step, setStep }) => {
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-8'>
-          <StepNavigation step={step} setStep={setStep}></StepNavigation>
+          <StepNavigation
+            step={step}
+            setStep={setStep}
+            error={
+              errors.Date
+                ? 'Date is required!'
+                : errors.Time
+                ? 'Time is required!'
+                : watch('Date') === '' || watch('Time') === ''
+                ? 'Date and Time both are Required!'
+                : false
+            }
+          ></StepNavigation>
         </div>
       </div>
     </form>

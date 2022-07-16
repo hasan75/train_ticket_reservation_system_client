@@ -1,9 +1,7 @@
 import React from 'react';
 import navigationStyles from './StepNavigation.module.css';
 
-const StepNavigation = ({ step, setStep }) => {
-  const error = true;
-
+const StepNavigation = ({ step, setStep, error }) => {
   // for next button funtionality
   const nextStepFrom = (step, setStep) => {
     setStep((currentStep) => currentStep + 1);
@@ -19,7 +17,7 @@ const StepNavigation = ({ step, setStep }) => {
       {error ? (
         <h5 className='d-flex align-items-center justify-content-center text-danger py-3'>
           <span className='material-icons-sharp me-2'>error</span>{' '}
-          <span>Error is to show here!</span>
+          <span>{error}</span>
         </h5>
       ) : (
         ''

@@ -47,7 +47,7 @@ const StationsInfo = ({ step, setStep }) => {
             className='form-select'
             {...register('From', { required: true })}
           >
-            <option hidden></option>
+            <option></option>
             {formData.From === '東京' ? (
               <option selected value='東京'>
                 東京
@@ -88,7 +88,7 @@ const StationsInfo = ({ step, setStep }) => {
             className='form-select'
             {...register('To', { required: true })}
           >
-            <option hidden></option>
+            <option></option>
             {formData?.To === '東京' ? (
               <option selected value='東京'>
                 東京
@@ -122,7 +122,19 @@ const StationsInfo = ({ step, setStep }) => {
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-8'>
-          <StepNavigation step={step} setStep={setStep}></StepNavigation>
+          <StepNavigation
+            step={step}
+            setStep={setStep}
+            error={
+              errors.From
+                ? 'Departure Station is required!'
+                : errors.To
+                ? 'Destination Station is required!'
+                : watch('From') === watch('To')
+                ? 'Departure and Destination station can not be same!'
+                : false
+            }
+          ></StepNavigation>
         </div>
       </div>
     </form>

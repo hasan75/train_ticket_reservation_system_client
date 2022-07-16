@@ -99,7 +99,11 @@ const PersonalInfo = ({ step, setStep }) => {
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-8'>
-          <StepNavigation step={step} setStep={setStep}></StepNavigation>
+          <StepNavigation
+            step={step}
+            setStep={setStep}
+            error={errors.Name ? 'Name field is required' : false}
+          ></StepNavigation>
         </div>
       </div>
     </form>
