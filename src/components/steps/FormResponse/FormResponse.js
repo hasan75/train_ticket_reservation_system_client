@@ -3,7 +3,7 @@ import { useFormDataContext } from '../../../hooks/useFormDataContext';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 import ResponseMsg from './ResponseMsg';
 
-const FormResponse = () => {
+const FormResponse = ({ step, setStep }) => {
   const { formData } = useFormDataContext();
 
   return (
@@ -14,8 +14,8 @@ const FormResponse = () => {
         </div>
       </div>
       <div className='row d-flex justify-content-center'>
-        <div className='col-7'>
-          <StepNavigation />
+        <div className='col-8'>
+          <StepNavigation step={step} setStep={setStep} />
         </div>
       </div>
     </div>

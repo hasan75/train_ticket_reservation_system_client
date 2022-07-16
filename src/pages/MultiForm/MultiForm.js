@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import FormContent from '../../components/FormContent/FormContent';
 import { useFormDataContext } from '../../hooks/useFormDataContext';
 import utils from '../../utils/utils';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const MultiForm = () => {
   // context api
@@ -16,18 +17,35 @@ const MultiForm = () => {
     setStepChange(true);
   };
 
+  // render on every step change
+
+  //this useRef for preventing multi render
+  //const renderOnStep = useRef(true);
+
   useEffect(() => {
+    // if (renderOnStep.current) {
+    //   renderOnStep.current = false;
+    //   changeStepChange();
+    // }
     changeStepChange();
   }, [step]);
-  console.log(step);
 
   const { formContentStep } = utils;
 
   const currentFormContent = formContentStep(step, setStep);
 
+  // from localStorage, save data
+
+  // fow showing spinner while stepChange is true for 800ms
+  setTimeout(() => {
+    setStepChange(false);
+  }, 800);
+
   return (
     <div className=''>
-      <FormContent>{currentFormContent}</FormContent>
+      <FormContent>
+        {stepChange ? <LoadingSpinner /> : currentFormContent}
+      </FormContent>
     </div>
   );
 };

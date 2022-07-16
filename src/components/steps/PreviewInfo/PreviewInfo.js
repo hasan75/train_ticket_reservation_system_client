@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
-const PreviewInfo = () => {
+const PreviewInfo = ({ step, setStep }) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -75,7 +75,7 @@ const PreviewInfo = () => {
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-7 mt-4'>
-          <StepNavigation></StepNavigation>
+          <StepNavigation step={step} setStep={setStep}></StepNavigation>
         </div>
       </div>
     </form>

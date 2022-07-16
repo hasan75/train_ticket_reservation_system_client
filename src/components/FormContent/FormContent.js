@@ -8,6 +8,7 @@ import TicketFareAmount from '../steps/TicketFareAmount/TicketFareAmount';
 import formContentStyles from './FormContent.module.css';
 import FormResponse from '../steps/FormResponse/FormResponse';
 import { useFormDataContext } from '../../hooks/useFormDataContext';
+
 const FormContent = ({ children }) => {
   return (
     <div

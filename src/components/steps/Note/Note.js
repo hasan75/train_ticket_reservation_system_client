@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
-const Note = () => {
+const Note = ({ step, setStep }) => {
   const { formData, setFormValues } = useFormDataContext();
 
   let defaultText = `"
@@ -75,7 +75,7 @@ const Note = () => {
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-8'>
-          <StepNavigation></StepNavigation>
+          <StepNavigation step={step} setStep={setStep}></StepNavigation>
         </div>
       </div>
     </form>

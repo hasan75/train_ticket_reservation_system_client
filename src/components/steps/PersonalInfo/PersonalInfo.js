@@ -1,17 +1,28 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useFormDataContext } from '../../../hooks/useFormDataContext';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ step, setStep }) => {
+  //
+  const { formData, setFormValues } = useFormDataContext();
+
   const {
     handleSubmit,
     formState: { errors },
     register,
-  } = useForm({ mode: 'all', defaultValues: {} });
+  } = useForm({
+    mode: 'all',
+    defaultValues: { Name: formData?.Name, Gender: formData?.Gender },
+  });
 
   const onSubmit = (values) => {
+    setFormValues(values);
     console.log(values);
+
+    setStep((currentStep) => currentStep + 1);
   };
+
   return (
     <form
       className='d-flex flex-column justify-content-between w-100'
@@ -36,30 +47,52 @@ const PersonalInfo = () => {
             Gender
           </label>
           <div className='form-check ms-5'>
-            <input
-              className='form-check-input'
-              type='radio'
-              name='Gender'
-              value='Male'
-              {...register('Gender')}
-            />
+            {formData?.Gender === 'Male' ? (
+              <input
+                className='form-check-input'
+                type='radio'
+                checked
+                name='Gender'
+                value='Male'
+                {...register('Gender')}
+              />
+            ) : (
+              <input
+                className='form-check-input'
+                type='radio'
+                name='Gender'
+                value='Male'
+                {...register('Gender')}
+              />
+            )}
             <label className='form-check-label'>Male</label>
           </div>
           <div className='form-check ms-5'>
-            <input
-              className='form-check-input'
-              type='radio'
-              name='Gender'
-              value='Female'
-              {...register('Gender')}
-            />
+            {formData?.Gender === 'Female' ? (
+              <input
+                className='form-check-input'
+                type='radio'
+                checked
+                name='Gender'
+                value='Female'
+                {...register('Gender')}
+              />
+            ) : (
+              <input
+                className='form-check-input'
+                type='radio'
+                name='Gender'
+                value='Female'
+                {...register('Gender')}
+              />
+            )}
             <label className='form-check-label'>Female</label>
           </div>
         </div>
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-8'>
-          <StepNavigation></StepNavigation>
+          <StepNavigation step={step} setStep={setStep}></StepNavigation>
         </div>
       </div>
     </form>

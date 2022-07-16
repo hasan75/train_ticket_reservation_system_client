@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
-const TicketFareAmount = () => {
+const TicketFareAmount = ({ step, setStep }) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -62,7 +62,7 @@ const TicketFareAmount = () => {
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-8'>
-          <StepNavigation></StepNavigation>
+          <StepNavigation step={step} setStep={setStep}></StepNavigation>
         </div>
       </div>
     </form>

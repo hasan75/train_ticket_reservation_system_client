@@ -7,8 +7,11 @@ import './DateNTime.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import StepNavigation from '../../StepNavigation/StepNavigation';
+import { useFormDataContext } from '../../../hooks/useFormDataContext';
 
-const DateNTime = () => {
+const DateNTime = ({ step, setStep }) => {
+  const { formData, setFormValues } = useFormDataContext();
+
   // for default values
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -68,7 +71,7 @@ const DateNTime = () => {
       </div>
       <div className='row d-flex justify-content-center'>
         <div className='col-8'>
-          <StepNavigation></StepNavigation>
+          <StepNavigation step={step} setStep={setStep}></StepNavigation>
         </div>
       </div>
     </form>
