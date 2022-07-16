@@ -1,21 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useFormDataContext } from '../../../hooks/useFormDataContext';
+import utils from '../../../utils/utils';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const TicketFareAmount = ({ step, setStep }) => {
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-    watch,
-  } = useForm({
-    mode: 'all',
-    defaultValues: {},
-  });
+  const { saveDataToLocal } = utils;
 
-  const onSubmit = (values) => {
-    console.log(values);
-  };
+  const { formData, setFormValues } = useFormDataContext();
 
   //fucntion for  random number generator of 8 digits with 2 digit of decimal values
   const randomNumber = () => {
@@ -28,15 +20,36 @@ const TicketFareAmount = ({ step, setStep }) => {
     // console.log(fareAmount);
   };
 
-  const fareAmount = randomNumber();
-
   // function for comma separation after thousands
   const fareAmountWithComma = (fareAmount) => {
     return fareAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
-  // ticket fare with comma separation in a variable
-  const farewithComma = fareAmountWithComma(fareAmount);
+  if (!formData.TicketFare) {
+    let newFormData = formData;
+    newFormData.TicketFare = randomNumber();
+
+    setFormValues(newFormData);
+  }
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+    watch,
+  } = useForm({
+    mode: 'all',
+    defaultValues: { TicketFare: formData.TicketFare },
+  });
+
+  const onSubmit = (values) => {
+    setFormValues(values);
+
+    //to local storage
+    saveDataToLocal({ ...formData, ...values });
+
+    setStep((currentStep) => currentStep + 1);
+  };
 
   return (
     <form
@@ -50,11 +63,11 @@ const TicketFareAmount = ({ step, setStep }) => {
           </label>
           <div className='col-12 border border-1 d-flex align-items-center justify-content-between rounded-2 p-2'>
             <span>৳</span>
-            <span>{fareAmountWithComma(fareAmount)}</span>
+            <span>{fareAmountWithComma(formData.TicketFare)}</span>
             <input
               className='d-none'
               name='TicketFare'
-              value={farewithComma}
+              value={formData.TicketFare}
               {...register('TicketFare')}
             />
           </div>

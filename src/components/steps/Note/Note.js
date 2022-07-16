@@ -2,9 +2,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
+import utils from '../../../utils/utils';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const Note = ({ step, setStep }) => {
+  const { saveDataToLocal } = utils;
+
   const { formData, setFormValues } = useFormDataContext();
 
   let defaultText = `"
@@ -50,12 +53,17 @@ const Note = ({ step, setStep }) => {
   } = useForm({
     mode: 'all',
     defaultValues: {
-      Note: defaultText,
+      Note: formData.Note ? formData.Note : defaultText,
     },
   });
 
   const onSubmit = (values) => {
     setFormValues(values);
+
+    //to local
+    saveDataToLocal({ ...formData, ...values });
+
+    setStep((currentStep) => currentStep + 1);
   };
   return (
     <form
