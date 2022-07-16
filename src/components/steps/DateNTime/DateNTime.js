@@ -1,37 +1,65 @@
 // react-date-picker package is used to take date and time in required format.
 
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import './DateNTime.css';
 // date picker imports
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
 import StepNavigation from '../../StepNavigation/StepNavigation';
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
+import utils from '../../../utils/utils';
 
 const DateNTime = ({ step, setStep }) => {
   const { formData, setFormValues } = useFormDataContext();
 
-  // for default values
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const { saveDataToLocal } = utils;
 
-  const { handleSubmit, register, watch } = useForm({
+  //for default values
+  const currentDate = new Date();
+  const currentTime = new Date();
+
+  // for default values
+  // const [currentDate, setCurrentDate] = useState(new Date());
+  // const [currentTime, setCurrentTime] = useState(new Date());
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    register,
+    watch,
+  } = useForm({
     mode: 'all',
-    defaultValues: {},
+    defaultValues: { Date: currentDate, Time: currentTime },
   });
 
-  const dateInput = new Date(currentDate).toLocaleDateString('en-CA');
+  // const dateInput = new Date(currentDate).toLocaleDateString('en-CA');
 
   const onSubmit = (values) => {
-    values.date = dateInput;
-    values.time = currentTime.toLocaleTimeString([], {
+    values.Date = new Date(values.Date).toLocaleDateString('en-CA');
+
+    values.Time = values.Time.toLocaleTimeString([], {
       hourCycle: 'h23',
       hour: '2-digit',
       minute: '2-digit',
     });
+
     console.log(values);
+    setFormValues(values);
+
+    //to local storage
+    saveDataToLocal(formData);
+
+    setStep((currentStep) => currentStep + 1);
   };
+
+  const [initailRendering, setInitialRendering] = useState(true);
+
+  useEffect(() => {
+    setInitialRendering(false);
+  }, []);
 
   return (
     <form
@@ -44,11 +72,18 @@ const DateNTime = ({ step, setStep }) => {
           <label htmlFor='Date' className='fw-bold mb-2'>
             Date
           </label>
-          <DatePicker
-            className='col-12'
-            dateFormat='yyyy/MM/dd'
-            selected={currentDate}
-            onChange={(date) => setCurrentDate(date)}
+          <Controller
+            control={control}
+            name='Date'
+            rules={{ required: true }}
+            render={({ field }) => (
+              <DatePicker
+                className='col-12 form-control'
+                dateFormat='yyyy/MM/dd'
+                onChange={(date) => field.onChange(date)}
+                selected={initailRendering ? currentDate : field.value}
+              />
+            )}
           />
         </div>
         {/* time input in 24 hours HH:mm format */}
@@ -56,16 +91,23 @@ const DateNTime = ({ step, setStep }) => {
           <label htmlFor='Time' className='mb-2 fw-bold'>
             Time
           </label>
-          <DatePicker
-            className='col-12'
-            selected={currentTime}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={1}
-            timeCaption='Time'
-            dateFormat='HH:mm'
-            timeFormat='HH:mm'
-            onChange={(time) => setCurrentTime(time)}
+          <Controller
+            control={control}
+            name='Time'
+            rules={{ required: true }}
+            render={({ field }) => (
+              <DatePicker
+                className='form-control'
+                selected={initailRendering ? currentTime : field.value}
+                onChange={(time) => field.onChange(time)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={1}
+                timeCaption='Time'
+                dateFormat='HH:mm'
+                timeFormat='HH:mm'
+              />
+            )}
           />
         </div>
       </div>

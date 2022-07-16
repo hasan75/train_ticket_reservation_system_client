@@ -1,16 +1,36 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useFormDataContext } from '../../../hooks/useFormDataContext';
+import utils from '../../../utils/utils';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const StationsInfo = ({ step, setStep }) => {
-  const { handleSubmit, register, watch } = useForm({
+  const { formData, setFormValues } = useFormDataContext();
+
+  const { saveDataToLocal } = utils;
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+    watch,
+  } = useForm({
     mode: 'all',
-    defaultValues: {},
+    defaultValues: {
+      From: formData?.From,
+      To: formData?.To,
+    },
   });
 
   const onSubmit = (values) => {
-    console.log(values);
+    setFormValues(values);
+
+    //to local storage
+    saveDataToLocal({ ...formData, ...values });
+
+    setStep((currentStep) => currentStep + 1);
   };
+
   return (
     <form
       className='d-flex flex-column justify-content-between w-100'
@@ -28,10 +48,34 @@ const StationsInfo = ({ step, setStep }) => {
             {...register('From', { required: true })}
           >
             <option hidden></option>
-            <option value='東京'>東京</option>
-            <option value='横浜'>横浜</option>
-            <option value='名古屋'>名古屋</option>
-            <option value='大阪'>大阪</option>
+            {formData.From === '東京' ? (
+              <option selected value='東京'>
+                東京
+              </option>
+            ) : (
+              <option value='東京'>東京</option>
+            )}
+            {formData?.From === '横浜' ? (
+              <option selected value='横浜'>
+                横浜
+              </option>
+            ) : (
+              <option value='横浜'>横浜</option>
+            )}
+            {formData?.From === '名古屋' ? (
+              <option selected value='名古屋'>
+                名古屋
+              </option>
+            ) : (
+              <option value='名古屋'>名古屋</option>
+            )}
+            {formData?.From === '大阪' ? (
+              <option selected value='大阪'>
+                大阪
+              </option>
+            ) : (
+              <option value='大阪'>大阪</option>
+            )}
           </select>
         </div>
         {/* to which station */}
@@ -45,10 +89,34 @@ const StationsInfo = ({ step, setStep }) => {
             {...register('To', { required: true })}
           >
             <option hidden></option>
-            <option value='東京'>東京</option>
-            <option value='横浜'>横浜</option>
-            <option value='名古屋'>名古屋</option>
-            <option value='大阪'>大阪'</option>
+            {formData?.To === '東京' ? (
+              <option selected value='東京'>
+                東京
+              </option>
+            ) : (
+              <option value='東京'>東京</option>
+            )}
+            {formData?.To === '横浜' ? (
+              <option selected value='横浜'>
+                横浜
+              </option>
+            ) : (
+              <option value='横浜'>横浜</option>
+            )}
+            {formData?.To === '名古屋' ? (
+              <option selected value='名古屋'>
+                名古屋
+              </option>
+            ) : (
+              <option value='名古屋'>名古屋</option>
+            )}
+            {formData?.To === '大阪' ? (
+              <option selected value='大阪'>
+                大阪
+              </option>
+            ) : (
+              <option value='大阪'>大阪</option>
+            )}
           </select>
         </div>
       </div>
