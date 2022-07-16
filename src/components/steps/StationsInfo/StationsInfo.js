@@ -47,34 +47,34 @@ const StationsInfo = ({ step, setStep }) => {
             className='form-select'
             {...register('From', { required: true })}
           >
-            <option></option>
+            <option hidden></option>
             {formData.From === '東京' ? (
-              <option selected value='東京'>
+              <option selected value={'東京'}>
                 東京
               </option>
             ) : (
-              <option value='東京'>東京</option>
+              <option value={'東京'}>東京</option>
             )}
             {formData?.From === '横浜' ? (
-              <option selected value='横浜'>
+              <option selected value={'横浜'}>
                 横浜
               </option>
             ) : (
-              <option value='横浜'>横浜</option>
+              <option value={'横浜'}>横浜</option>
             )}
             {formData?.From === '名古屋' ? (
-              <option selected value='名古屋'>
+              <option selected value={'名古屋'}>
                 名古屋
               </option>
             ) : (
-              <option value='名古屋'>名古屋</option>
+              <option value={'名古屋'}>名古屋</option>
             )}
             {formData?.From === '大阪' ? (
-              <option selected value='大阪'>
+              <option selected value={'大阪'}>
                 大阪
               </option>
             ) : (
-              <option value='大阪'>大阪</option>
+              <option value={'大阪'}>大阪</option>
             )}
           </select>
         </div>
@@ -88,34 +88,34 @@ const StationsInfo = ({ step, setStep }) => {
             className='form-select'
             {...register('To', { required: true })}
           >
-            <option></option>
+            <option hidden></option>
             {formData?.To === '東京' ? (
-              <option selected value='東京'>
+              <option selected value={'東京'}>
                 東京
               </option>
             ) : (
-              <option value='東京'>東京</option>
+              <option value={'東京'}>東京</option>
             )}
             {formData?.To === '横浜' ? (
-              <option selected value='横浜'>
+              <option selected value={'横浜'}>
                 横浜
               </option>
             ) : (
-              <option value='横浜'>横浜</option>
+              <option value={'横浜'}>横浜</option>
             )}
             {formData?.To === '名古屋' ? (
-              <option selected value='名古屋'>
+              <option selected value={'名古屋'}>
                 名古屋
               </option>
             ) : (
-              <option value='名古屋'>名古屋</option>
+              <option value={'名古屋'}>名古屋</option>
             )}
             {formData?.To === '大阪' ? (
-              <option selected value='大阪'>
+              <option selected value={'大阪'}>
                 大阪
               </option>
             ) : (
-              <option value='大阪'>大阪</option>
+              <option value={'大阪'}>大阪</option>
             )}
           </select>
         </div>
@@ -130,7 +130,7 @@ const StationsInfo = ({ step, setStep }) => {
                 ? 'Departure Station is required!'
                 : errors.To
                 ? 'Destination Station is required!'
-                : watch('From') === watch('To')
+                : watch('From') === watch('To') && watch('From') !== undefined
                 ? 'Departure and Destination station can not be same!'
                 : false
             }

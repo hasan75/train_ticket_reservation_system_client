@@ -31,15 +31,18 @@ const MultiForm = () => {
   }, [step]);
 
   // utilities
-  const { formContentStep } = utils;
+  const { formContentStep, decrypt } = utils;
 
   const currentFormContent = formContentStep(step, setStep);
 
   // from localStorage, save data
   useEffect(() => {
     if (localStorage.getItem('formData')) {
-      const dataFromLocalStorage = JSON.parse(localStorage.getItem('formData'));
+      const dataFromLocalStorage = JSON.parse(
+        decrypt(localStorage.getItem('formData'))
+      );
       if (dataFromLocalStorage) {
+        console.log(dataFromLocalStorage, 'decrypted');
         setFormValues(dataFromLocalStorage);
       }
     }

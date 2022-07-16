@@ -6,6 +6,9 @@ import PreviewInfo from '../components/steps/PreviewInfo/PreviewInfo';
 import StationsInfo from '../components/steps/StationsInfo/StationsInfo';
 import TicketFareAmount from '../components/steps/TicketFareAmount/TicketFareAmount';
 
+//incryption & discryption
+import CryptoJS from 'crypto-js';
+
 const utils = {};
 
 //content of the form as step
@@ -41,15 +44,28 @@ utils.formContentStep = (step, setStep) => {
   return currentStep;
 };
 
+//encryption function
+utils.encrypt = (string) => {
+  return CryptoJS.AES.encrypt(string, 'secret key 123').toString();
+};
+
+// decrypt string
+utils.decrypt = (string) => {
+  const decryptedMsg = CryptoJS.AES.decrypt(string, 'secret key 123');
+
+  return decryptedMsg.toString(CryptoJS.enc.Utf8);
+};
+
 // local storage fuctions for get and set data
 
 utils.saveDataToLocal = (formData) => {
-  localStorage.setItem('formData', JSON.stringify(formData));
+  localStorage.setItem('formData', utils.encrypt(JSON.stringify(formData)));
   console.log(formData);
 };
 
 utils.getData = () => {
-  const formData = JSON.parse(localStorage.getItem('formData'));
+  const formData = JSON.parse(utils.decrypt(localStorage.getItem('formData')));
+  console.log(formData);
   return typeof formData === 'object' ? formData : null;
 };
 
