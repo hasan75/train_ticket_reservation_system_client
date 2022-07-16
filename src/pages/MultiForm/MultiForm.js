@@ -30,11 +30,20 @@ const MultiForm = () => {
     changeStepChange();
   }, [step]);
 
+  // utilities
   const { formContentStep } = utils;
 
   const currentFormContent = formContentStep(step, setStep);
 
   // from localStorage, save data
+  useEffect(() => {
+    if (localStorage.getItem('formData')) {
+      const dataFromLocalStorage = JSON.parse(localStorage.getItem('formData'));
+      if (dataFromLocalStorage) {
+        setFormValues(dataFromLocalStorage);
+      }
+    }
+  }, []);
 
   // fow showing spinner while stepChange is true for 800ms
   setTimeout(() => {

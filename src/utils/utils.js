@@ -40,4 +40,16 @@ utils.formContentStep = (step, setStep) => {
   return currentStep;
 };
 
+// local storage fuctions for get and set data
+
+utils.saveDataToLocal = (formData) => {
+  localStorage.setItem('formData', JSON.stringify(formData));
+  console.log(formData);
+};
+
+utils.getData = () => {
+  const formData = JSON.parse(localStorage.getItem('formData'));
+  return typeof formData === 'object' ? formData : null;
+};
+
 export default utils;

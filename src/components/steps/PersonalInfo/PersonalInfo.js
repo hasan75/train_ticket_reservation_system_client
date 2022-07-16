@@ -1,11 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
+import utils from '../../../utils/utils';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const PersonalInfo = ({ step, setStep }) => {
   //
   const { formData, setFormValues } = useFormDataContext();
+  console.log(formData);
+
+  const { saveDataToLocal } = utils;
 
   const {
     handleSubmit,
@@ -18,7 +22,10 @@ const PersonalInfo = ({ step, setStep }) => {
 
   const onSubmit = (values) => {
     setFormValues(values);
-    console.log(values);
+    console.log('personal info:', values);
+
+    // save form values to localStorage
+    saveDataToLocal({ ...formData, ...values });
 
     setStep((currentStep) => currentStep + 1);
   };
