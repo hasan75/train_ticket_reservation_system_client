@@ -12,8 +12,8 @@ const FormContent = () => {
       className={`${formContentStyles.formContainer} d-flex align-items-center justify-content-center`}
     >
       <div className={formContentStyles.formContents}>
-        <div className={`${formContentStyles.formInputs} form-inputs`}>
-          <Note></Note>
+        <div className={`${formContentStyles.formInputs} form-inputs d-flex`}>
+          <TicketFareAmount />
         </div>
       </div>
     </div>

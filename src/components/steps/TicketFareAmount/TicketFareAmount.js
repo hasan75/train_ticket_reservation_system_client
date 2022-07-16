@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const TicketFareAmount = () => {
   const {
@@ -38,13 +39,16 @@ const TicketFareAmount = () => {
   const farewithComma = fareAmountWithComma(fareAmount);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='row d-flex justify-content-center'>
+    <form
+      className='d-flex flex-column justify-content-between w-100'
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className='row d-flex justify-content-center mt-5'>
         <div className='col-8'>
           <label className='mb-2 fw-bold' htmlFor='TicketFare'>
             Amount (BDT)
           </label>
-          <div className='col-12 border border-1 d-flex align-items-center justify-content-between rounded-2 px-2 py-2'>
+          <div className='col-12 border border-1 d-flex align-items-center justify-content-between rounded-2 p-2'>
             <span>৳</span>
             <span>{fareAmountWithComma(fareAmount)}</span>
             <input
@@ -56,9 +60,11 @@ const TicketFareAmount = () => {
           </div>
         </div>
       </div>
-      <button className='btn btn-primary' type='submit'>
-        Submit
-      </button>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-8'>
+          <StepNavigation></StepNavigation>
+        </div>
+      </div>
     </form>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
+import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const Note = () => {
   const { formData, setFormValues } = useFormDataContext();
@@ -57,7 +58,10 @@ const Note = () => {
     setFormValues(values);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className='d-flex flex-column justify-content-between h-100'
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className='row d-flex justify-content-center mt-5'>
         <div className='col-6'>
           <label className='fw-bold mb-2'>Note</label>
@@ -69,9 +73,6 @@ const Note = () => {
           />
         </div>
       </div>
-      <button className='btn btn-primary' type='submit'>
-        Submit
-      </button>
     </form>
   );
 };
