@@ -46,12 +46,19 @@ utils.formContentStep = (step, setStep) => {
 
 //encryption function
 utils.encrypt = (string) => {
-  return CryptoJS.AES.encrypt(string, 'secret key 123').toString();
+  return CryptoJS.AES.encrypt(
+    string,
+    process.env.REACT_APP_SECRET_KEY
+  ).toString();
 };
 
 // decrypt string
 utils.decrypt = (string) => {
-  const decryptedMsg = CryptoJS.AES.decrypt(string, 'secret key 123');
+  console.log('secter', process.env.REACT_APP_SECRET_KEY);
+  const decryptedMsg = CryptoJS.AES.decrypt(
+    string,
+    process.env.REACT_APP_SECRET_KEY
+  );
 
   return decryptedMsg.toString(CryptoJS.enc.Utf8);
 };
@@ -60,12 +67,12 @@ utils.decrypt = (string) => {
 
 utils.saveDataToLocal = (formData) => {
   localStorage.setItem('formData', utils.encrypt(JSON.stringify(formData)));
-  console.log(formData);
+  console.log(formData, 'encrypted');
 };
 
 utils.getData = () => {
   const formData = JSON.parse(utils.decrypt(localStorage.getItem('formData')));
-  console.log(formData);
+  // console.log( formData);
   return typeof formData === 'object' ? formData : null;
 };
 
