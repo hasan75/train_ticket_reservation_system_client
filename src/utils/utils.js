@@ -54,12 +54,11 @@ utils.encrypt = (string) => {
 
 // decrypt string
 utils.decrypt = (string) => {
-  console.log('secter', process.env.REACT_APP_SECRET_KEY);
   const decryptedMsg = CryptoJS.AES.decrypt(
     string,
     process.env.REACT_APP_SECRET_KEY
   );
-
+  // console.log(decryptedMsg.toString(CryptoJS.enc.Utf8));
   return decryptedMsg.toString(CryptoJS.enc.Utf8);
 };
 
@@ -67,12 +66,11 @@ utils.decrypt = (string) => {
 
 utils.saveDataToLocal = (formData) => {
   localStorage.setItem('formData', utils.encrypt(JSON.stringify(formData)));
-  console.log(formData, 'encrypted');
 };
 
 utils.getData = () => {
   const formData = JSON.parse(utils.decrypt(localStorage.getItem('formData')));
-  // console.log( formData);
+  // console.log(formData, 'decrypted');
   return typeof formData === 'object' ? formData : null;
 };
 

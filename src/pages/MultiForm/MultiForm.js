@@ -19,12 +19,13 @@ const MultiForm = () => {
 
   // render on every step change
 
-  //this useRef for preventing multi render
-  //const renderOnStep = useRef(true);
+  // this useRef for preventing multi render
+  // const renderOnStep = useRef(true);
 
   useEffect(() => {
     // if (renderOnStep.current) {
     //   renderOnStep.current = false;
+    //   console.log('One time Changed');
     //   changeStepChange();
     // }
     changeStepChange();

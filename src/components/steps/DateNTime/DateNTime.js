@@ -46,7 +46,6 @@ const DateNTime = ({ step, setStep }) => {
       minute: '2-digit',
     });
 
-    console.log(values);
     setFormValues(values);
 
     //to local storage

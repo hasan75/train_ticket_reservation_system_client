@@ -13,8 +13,19 @@ const ContextProvider = ({ children }) => {
     }));
   };
 
+  //for the res and loading component
+  const [loading, setLoading] = useState(true);
+  const [res, setRes] = useState();
+  console.log(res, loading);
+
+  const setResFun = (data) => {
+    setRes(data);
+  };
+
   return (
-    <FormContext.Provider value={{ formData, setFormValues }}>
+    <FormContext.Provider
+      value={{ formData, setFormValues, setLoading, setResFun, loading, res }}
+    >
       {children}
     </FormContext.Provider>
   );

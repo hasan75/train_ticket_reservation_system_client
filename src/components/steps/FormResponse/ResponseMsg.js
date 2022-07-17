@@ -1,10 +1,22 @@
 import React from 'react';
 
-const ResponseMsg = () => {
+const ResponseMsg = ({ response }) => {
   return (
     <div className='col-8'>
-      <h3 className='mt-2'>Error!</h3>
-      <h4 className='mt-5'>This name already exists.</h4>
+      <h3
+        className={`${
+          response?.status === 'success' ? 'text-success' : 'text-danger'
+        } mt-2`}
+      >
+        {response?.status === 'success' ? 'Thank You!' : response?.status}
+      </h3>
+      <h3
+        className={`${
+          response?.status === 'success' ? 'text-success' : 'text-danger'
+        } mt-5`}
+      >
+        {response?.message}
+      </h3>
     </div>
   );
 };

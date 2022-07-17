@@ -1,14 +1,21 @@
 import React from 'react';
 import navigationStyles from './StepNavigation.module.css';
 
-const StepNavigation = ({ step, setStep, error }) => {
+const StepNavigation = ({ step, setStep, error, response }) => {
   // for next button funtionality
-  const nextStepFrom = (step, setStep) => {
-    setStep((currentStep) => currentStep + 1);
-  };
+
+  // const nextStepFrom = (step, setStep) => {
+  //   setStep((currentStep) => currentStep + 1);
+  // };
+
   //for back button functionality
   const previousStepFrom = (step, setStep) => {
-    setStep((currentStep) => currentStep - 1);
+    console.log(step, 'on last page');
+    if (step === 7) {
+      setStep(1);
+    } else {
+      setStep((currentStep) => currentStep - 1);
+    }
   };
 
   return (
@@ -23,18 +30,19 @@ const StepNavigation = ({ step, setStep, error }) => {
         ''
       )}
       {/* back and next navigator buttons  */}
+
       <div
-        className={
+        className={`${response?.status === 'success' ? 'd-none' : ' '} ${
           step === 1
-            ? `d-flex justify-content-end`
-            : `d-flex justify-content-between`
-        }
+            ? 'd-flex justify-content-end'
+            : 'd-flex justify-content-between'
+        }`}
       >
         {step > 1 && (
           <button
             type='button'
             onClick={() => previousStepFrom(step, setStep)}
-            className='btn btn-outline-secondary px-5'
+            className='btn btn-outline-success px-5'
           >
             Back
           </button>

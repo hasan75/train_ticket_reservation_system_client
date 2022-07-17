@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const PreviewInfo = ({ step, setStep }) => {
-  const { formData, setFormValues } = useFormDataContext();
+  //res ,setRes, loading, setLoading fixed to the context
+  const { formData, setFormValues, setLoading, res, setResFun } =
+    useFormDataContext();
 
   const {
     handleSubmit,
@@ -14,7 +16,32 @@ const PreviewInfo = ({ step, setStep }) => {
   } = useForm();
 
   const onSubmit = (values) => {
-    setFormValues(values);
+    // console.log(formData, 'formPreview');
+    // setFormValues(values);
+
+    // fetch is called here
+    fetch('http://localhost:5050/formSubmit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, 'res from backend');
+        if (data.status === 'success') {
+          console.log(data.status);
+          localStorage.removeItem('formData');
+          setResFun(data);
+          setLoading(false);
+        } else {
+          setResFun(data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
 
     setStep((currentStep) => currentStep + 1);
   };
@@ -47,7 +74,8 @@ const PreviewInfo = ({ step, setStep }) => {
             <textarea
               className='form-control position-relative'
               rows='10'
-              value={formData?.Note}
+              defaultValue={formData?.Note}
+              disabled
             ></textarea>
           </div>
         </div>
