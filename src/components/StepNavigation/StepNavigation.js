@@ -29,6 +29,7 @@ const StepNavigation = ({ step, setStep, error, response }) => {
       ) : (
         ''
       )}
+
       {/* back and next navigator buttons  */}
 
       <div
