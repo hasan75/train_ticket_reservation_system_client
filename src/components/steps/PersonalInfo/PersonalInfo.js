@@ -22,9 +22,8 @@ const PersonalInfo = ({ step, setStep }) => {
 
   const onSubmit = (values) => {
     setFormValues(values);
-    console.log('personal info:', values);
 
-    // save form values to localStorage
+    // save values to localStorage
     saveDataToLocal({ ...formData, ...values });
 
     setStep((currentStep) => currentStep + 1);

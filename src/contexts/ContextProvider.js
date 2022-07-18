@@ -15,7 +15,7 @@ const ContextProvider = ({ children }) => {
 
   //for the res and loading component
   const [loading, setLoading] = useState(true);
-  const [res, setRes] = useState();
+  const [res, setRes] = useState({});
   console.log(res, loading);
 
   const setResFun = (data) => {

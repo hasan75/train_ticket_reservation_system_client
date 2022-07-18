@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ResponseMsg = ({ response }) => {
-  console.log(typeof response.status == 'object');
+  console.log(response);
   return (
     <div className='col-8'>
       <h3
@@ -11,16 +11,6 @@ const ResponseMsg = ({ response }) => {
             : 'text-danger'
         } mt-2`}
       >
-        {/* {typeof response.status !== 'object' &&
-        response?.status === 'success' ? (
-          <span>Thank You!</span>
-        ) : (
-          <>
-            <span class='material-icons-sharp ms-1'>error_outline</span>{' '}
-            <span>{response?.status}</span>
-          </>
-        )} */}
-
         {typeof response.status !== 'object' ? (
           response?.status === 'success' ? (
             <span>Thank You!!</span>

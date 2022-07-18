@@ -1,7 +1,9 @@
 import React from 'react';
+import { useFormDataContext } from '../../hooks/useFormDataContext';
 import navigationStyles from './StepNavigation.module.css';
 
 const StepNavigation = ({ step, setStep, error, response }) => {
+  const { res, setResFun } = useFormDataContext();
   // for next button funtionality
 
   // const nextStepFrom = (step, setStep) => {
@@ -13,6 +15,8 @@ const StepNavigation = ({ step, setStep, error, response }) => {
     console.log(step, 'on last page');
     if (step === 7) {
       setStep(1);
+      setResFun({});
+      console.log(res, 'res after back');
     } else {
       setStep((currentStep) => currentStep - 1);
     }

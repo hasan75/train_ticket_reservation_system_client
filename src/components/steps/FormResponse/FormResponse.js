@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 import StepNavigation from '../../StepNavigation/StepNavigation';
@@ -6,7 +6,7 @@ import ResponseMsg from './ResponseMsg';
 
 const FormResponse = ({ step, setStep }) => {
   const { loading, res } = useFormDataContext();
-  console.log(loading, res, 'from RES');
+  console.log(res, 'from RES');
 
   return (
     <div className='d-flex flex-column justify-content-between w-100'>

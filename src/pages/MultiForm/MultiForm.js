@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FormContent from '../../components/FormContent/FormContent';
 import { useFormDataContext } from '../../hooks/useFormDataContext';
 import utils from '../../utils/utils';
@@ -17,17 +17,7 @@ const MultiForm = () => {
     setStepChange(true);
   };
 
-  // render on every step change
-
-  // this useRef for preventing multi render
-  // const renderOnStep = useRef(true);
-
   useEffect(() => {
-    // if (renderOnStep.current) {
-    //   renderOnStep.current = false;
-    //   console.log('One time Changed');
-    //   changeStepChange();
-    // }
     changeStepChange();
   }, [step]);
 

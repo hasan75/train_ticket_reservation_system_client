@@ -11,8 +11,6 @@ const PreviewInfo = ({ step, setStep }) => {
   const {
     handleSubmit,
     formState: { errors },
-    register,
-    watch,
   } = useForm();
 
   const onSubmit = (values) => {
@@ -27,9 +25,9 @@ const PreviewInfo = ({ step, setStep }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, 'res from backend');
+        // console.log(data, 'res from backend');
         if (data.status === 'success') {
-          console.log(data.status);
+          // console.log(data.status);
           localStorage.removeItem('formData');
           setResFun(data);
           setLoading(false);
@@ -51,6 +49,7 @@ const PreviewInfo = ({ step, setStep }) => {
     return fareAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
+  //covert taka to JPY
   const fareJPY = Math.floor(parseInt(formData?.TicketFare) * 1.47);
 
   return (
