@@ -7,7 +7,7 @@ import StepNavigation from '../../StepNavigation/StepNavigation';
 const PersonalInfo = ({ step, setStep }) => {
   //
   const { formData, setFormValues } = useFormDataContext();
-  console.log(formData);
+  // console.log(formData);
 
   const { saveDataToLocal } = utils;
 

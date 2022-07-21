@@ -14,11 +14,13 @@ const PreviewInfo = ({ step, setStep }) => {
   } = useForm();
 
   const onSubmit = (values) => {
-    // console.log(formData, 'formPreview');
-    // setFormValues(values);
+    console.log(formData, 'formPreview');
+    setFormValues(values);
+
+    //https://whispering-falls-17144.herokuapp.com/formSubmit
 
     // fetch is called here
-    fetch('https://whispering-falls-17144.herokuapp.com/formSubmit', {
+    fetch('http://localhost:5050/formSubmit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -52,6 +54,9 @@ const PreviewInfo = ({ step, setStep }) => {
   //covert taka to JPY
   const fareJPY = Math.floor(parseInt(formData?.TicketFare) * 1.47);
 
+  // const fromStation = formData?.From;
+  // console.log(fromStation);
+
   return (
     <form
       className='d-flex flex-column justify-content-between w-100'
@@ -61,8 +66,26 @@ const PreviewInfo = ({ step, setStep }) => {
         <div className='col-6'>
           <h5>Name: {formData?.Name}</h5>
           <h5>Gender: {formData?.Gender}</h5>
-          <h5>From: {formData?.From}</h5>
-          <h5>To: {formData?.To}</h5>
+          <h5>
+            From:{' '}
+            {formData?.From === '東京'
+              ? 'Tokyo'
+              : formData?.From === '横浜'
+              ? 'Yokohama'
+              : formData?.From === '名古屋'
+              ? 'Nagoya'
+              : 'Osaka'}
+          </h5>
+          <h5>
+            To:{' '}
+            {formData?.To === '東京'
+              ? 'Tokyo'
+              : formData?.To === '横浜'
+              ? 'Yokohama'
+              : formData?.To === '名古屋'
+              ? 'Nagoya'
+              : 'Osaka'}
+          </h5>
           <h5>Date: {formData?.Date}</h5>
           <h5>Time: {formData?.Time}</h5>
           <h5>

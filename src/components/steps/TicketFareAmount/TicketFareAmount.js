@@ -13,11 +13,12 @@ const TicketFareAmount = ({ step, setStep }) => {
   const randomNumber = () => {
     let fareAmount = Math.floor(Math.random() * 10000000000 + 100) / 100;
     // console.log(fareAmount.toString().split('.')[1]);
+
     if (fareAmount.toString().split('.')[1].length === 1) {
       fareAmount = fareAmount + '1';
     }
-    return fareAmount;
-    // console.log(fareAmount);
+    // console.log(fareAmount, 'TicketPrice');
+    return parseFloat(fareAmount);
   };
 
   // function for comma separation after thousands
@@ -28,7 +29,6 @@ const TicketFareAmount = ({ step, setStep }) => {
   if (!formData.TicketFare) {
     let newFormData = formData;
     newFormData.TicketFare = randomNumber();
-
     setFormValues(newFormData);
   }
 
@@ -36,7 +36,6 @@ const TicketFareAmount = ({ step, setStep }) => {
     handleSubmit,
     formState: { errors },
     register,
-    watch,
   } = useForm({
     mode: 'all',
     defaultValues: { TicketFare: formData.TicketFare },
