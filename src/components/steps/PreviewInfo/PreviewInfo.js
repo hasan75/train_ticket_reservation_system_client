@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
 import StepNavigation from '../../StepNavigation/StepNavigation';
@@ -8,14 +8,28 @@ const PreviewInfo = ({ step, setStep }) => {
   const { formData, setFormValues, setLoading, res, setResFun } =
     useFormDataContext();
 
+  // function for comma separation after thousands
+  const fareAmountWithComma = (fareAmount) => {
+    return fareAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  //covert taka to JPY
+  const fareJPY = Math.floor(parseInt(formData?.TicketFare) * 1.47);
+  console.log(fareJPY, 'fairJPY');
+
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (values) => {
-    console.log(formData, 'formPreview');
+    // console.log(formData, 'formPreview');
+
     setFormValues(values);
+
+    const previewFormData = formData;
+    previewFormData.TicketFare = fareJPY;
+    console.log(previewFormData, 'formData in preview page');
 
     //https://whispering-falls-17144.herokuapp.com/formSubmit
 
@@ -23,7 +37,7 @@ const PreviewInfo = ({ step, setStep }) => {
     fetch('http://localhost:5050/formSubmit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(previewFormData),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -46,17 +60,6 @@ const PreviewInfo = ({ step, setStep }) => {
     setStep((currentStep) => currentStep + 1);
   };
 
-  // function for comma separation after thousands
-  const fareAmountWithComma = (fareAmount) => {
-    return fareAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  };
-
-  //covert taka to JPY
-  const fareJPY = Math.floor(parseInt(formData?.TicketFare) * 1.47);
-
-  // const fromStation = formData?.From;
-  // console.log(fromStation);
-
   return (
     <form
       className='d-flex flex-column justify-content-between w-100'
@@ -68,23 +71,25 @@ const PreviewInfo = ({ step, setStep }) => {
           <h5>Gender: {formData?.Gender}</h5>
           <h5>
             From:{' '}
-            {formData?.From === '東京'
+            {/* {formData?.From === '東京'
               ? 'Tokyo'
               : formData?.From === '横浜'
               ? 'Yokohama'
               : formData?.From === '名古屋'
               ? 'Nagoya'
-              : 'Osaka'}
+              : 'Osaka'} */}
+            {formData?.From}
           </h5>
           <h5>
             To:{' '}
-            {formData?.To === '東京'
+            {/* {formData?.To === '東京'
               ? 'Tokyo'
               : formData?.To === '横浜'
               ? 'Yokohama'
               : formData?.To === '名古屋'
               ? 'Nagoya'
-              : 'Osaka'}
+              : 'Osaka'} */}
+            {formData?.To}
           </h5>
           <h5>Date: {formData?.Date}</h5>
           <h5>Time: {formData?.Time}</h5>

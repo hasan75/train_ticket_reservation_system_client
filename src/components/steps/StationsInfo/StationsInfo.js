@@ -48,33 +48,33 @@ const StationsInfo = ({ step, setStep }) => {
             {...register('From', { required: true })}
           >
             <option hidden></option>
-            {formData.From === '東京' ? (
-              <option selected value={'東京'}>
+            {formData.From === 'Tokyo' ? (
+              <option selected value={'Tokyo'}>
                 東京
               </option>
             ) : (
-              <option value={'東京'}>東京</option>
+              <option value={'Tokyo'}>東京</option>
             )}
-            {formData?.From === '横浜' ? (
-              <option selected value={'横浜'}>
+            {formData?.From === 'Yokohama' ? (
+              <option selected value={'Yokohama'}>
                 横浜
               </option>
             ) : (
-              <option value={'横浜'}>横浜</option>
+              <option value={'Yokohama'}>横浜</option>
             )}
-            {formData?.From === '名古屋' ? (
-              <option selected value={'名古屋'}>
+            {formData?.From === 'Nagoya' ? (
+              <option selected value={'Nagoya'}>
                 名古屋
               </option>
             ) : (
-              <option value={'名古屋'}>名古屋</option>
+              <option value={'Nagoya'}>名古屋</option>
             )}
-            {formData?.From === '大阪' ? (
-              <option selected value={'大阪'}>
+            {formData?.From === 'Osaka' ? (
+              <option selected value={'Osaka'}>
                 大阪
               </option>
             ) : (
-              <option value={'大阪'}>大阪</option>
+              <option value={'Osaka'}>大阪</option>
             )}
           </select>
         </div>
@@ -89,33 +89,33 @@ const StationsInfo = ({ step, setStep }) => {
             {...register('To', { required: true })}
           >
             <option hidden></option>
-            {formData?.To === '東京' ? (
-              <option selected value={'東京'}>
+            {formData?.To === 'Tokyo' ? (
+              <option selected value={'Tokyo'}>
                 東京
               </option>
             ) : (
-              <option value={'東京'}>東京</option>
+              <option value={'Tokyo'}>東京</option>
             )}
-            {formData?.To === '横浜' ? (
-              <option selected value={'横浜'}>
+            {formData?.To === 'Yokohama' ? (
+              <option selected value={'Yokohama'}>
                 横浜
               </option>
             ) : (
-              <option value={'横浜'}>横浜</option>
+              <option value={'Yokohama'}>横浜</option>
             )}
-            {formData?.To === '名古屋' ? (
-              <option selected value={'名古屋'}>
+            {formData?.To === 'Nagoya' ? (
+              <option selected value={'Nagoya'}>
                 名古屋
               </option>
             ) : (
-              <option value={'名古屋'}>名古屋</option>
+              <option value={'Nagoya'}>名古屋</option>
             )}
-            {formData?.To === '大阪' ? (
-              <option selected value={'大阪'}>
+            {formData?.To === 'Osaka' ? (
+              <option selected value={'Osaka'}>
                 大阪
               </option>
             ) : (
-              <option value={'大阪'}>大阪</option>
+              <option value={'Osaka'}>大阪</option>
             )}
           </select>
         </div>
