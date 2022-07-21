@@ -31,10 +31,8 @@ const PreviewInfo = ({ step, setStep }) => {
     previewFormData.TicketFare = fareJPY;
     console.log(previewFormData, 'formData in preview page');
 
-    //https://whispering-falls-17144.herokuapp.com/formSubmit
-
     // fetch is called here
-    fetch('http://localhost:5050/formSubmit', {
+    fetch('https://whispering-falls-17144.herokuapp.com/formSubmit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(previewFormData),
