@@ -1,9 +1,12 @@
 import React from 'react';
 import { useFormDataContext } from '../../hooks/useFormDataContext';
+import utils from '../../utils/utils';
 import navigationStyles from './StepNavigation.module.css';
 
 const StepNavigation = ({ step, setStep, error, response }) => {
   const { res, setResFun } = useFormDataContext();
+  const { saveStepToLocal, saveResToLocal } = utils;
+
   // for next button funtionality
 
   // const nextStepFrom = (step, setStep) => {
@@ -15,12 +18,15 @@ const StepNavigation = ({ step, setStep, error, response }) => {
     console.log(step, 'on last page');
     if (step === 7) {
       setStep(1);
+      saveStepToLocal(1);
       setResFun({});
-      console.log(res, 'res after back');
+      localStorage.removeItem('res');
     } else {
       setStep((currentStep) => currentStep - 1);
+      saveStepToLocal((step = step - 1));
     }
   };
+  // console.log(res, 'res after back');
 
   return (
     <div className={navigationStyles.stepNavigators}>

@@ -1,12 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useFormDataContext } from '../../../hooks/useFormDataContext';
+import utils from '../../../utils/utils';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const PreviewInfo = ({ step, setStep }) => {
   //res ,setRes, loading, setLoading fixed to the context
   const { formData, setFormValues, setLoading, res, setResFun } =
     useFormDataContext();
+
+  const { saveStepToLocal } = utils;
 
   // function for comma separation after thousands
   const fareAmountWithComma = (fareAmount) => {
@@ -43,6 +46,8 @@ const PreviewInfo = ({ step, setStep }) => {
         if (data.status === 'success') {
           // console.log(data.status);
           localStorage.removeItem('formData');
+          localStorage.removeItem('step');
+          localStorage.removeItem('res');
           setResFun(data);
           setLoading(false);
         } else {
@@ -56,6 +61,7 @@ const PreviewInfo = ({ step, setStep }) => {
       });
 
     setStep((currentStep) => currentStep + 1);
+    saveStepToLocal((step = step + 1));
   };
 
   return (

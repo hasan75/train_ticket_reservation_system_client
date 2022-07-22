@@ -9,7 +9,7 @@ const PersonalInfo = ({ step, setStep }) => {
   const { formData, setFormValues } = useFormDataContext();
   // console.log(formData);
 
-  const { saveDataToLocal } = utils;
+  const { saveDataToLocal, saveStepToLocal } = utils;
 
   const {
     handleSubmit,
@@ -27,6 +27,7 @@ const PersonalInfo = ({ step, setStep }) => {
     saveDataToLocal({ ...formData, ...values });
 
     setStep((currentStep) => currentStep + 1);
+    saveStepToLocal((step = step + 1));
   };
 
   return (

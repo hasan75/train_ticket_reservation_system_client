@@ -7,7 +7,7 @@ import StepNavigation from '../../StepNavigation/StepNavigation';
 const StationsInfo = ({ step, setStep }) => {
   const { formData, setFormValues } = useFormDataContext();
 
-  const { saveDataToLocal } = utils;
+  const { saveDataToLocal, saveStepToLocal } = utils;
 
   const {
     handleSubmit,
@@ -29,6 +29,7 @@ const StationsInfo = ({ step, setStep }) => {
     saveDataToLocal({ ...formData, ...values });
 
     setStep((currentStep) => currentStep + 1);
+    saveStepToLocal((step = step + 1));
   };
 
   return (

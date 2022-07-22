@@ -68,10 +68,12 @@ utils.saveDataToLocal = (formData) => {
   localStorage.setItem('formData', utils.encrypt(JSON.stringify(formData)));
 };
 
-utils.getData = () => {
-  const formData = JSON.parse(utils.decrypt(localStorage.getItem('formData')));
-  // console.log(formData, 'decrypted');
-  return typeof formData === 'object' ? formData : null;
+utils.saveStepToLocal = (step) => {
+  localStorage.setItem('step', utils.encrypt(JSON.stringify(step)));
+};
+
+utils.saveResToLocal = (res) => {
+  localStorage.setItem('res', utils.encrypt(JSON.stringify(res)));
 };
 
 export default utils;

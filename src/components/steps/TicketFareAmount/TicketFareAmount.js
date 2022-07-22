@@ -5,7 +5,7 @@ import utils from '../../../utils/utils';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const TicketFareAmount = ({ step, setStep }) => {
-  const { saveDataToLocal } = utils;
+  const { saveDataToLocal, saveStepToLocal } = utils;
 
   const { formData, setFormValues } = useFormDataContext();
 
@@ -48,6 +48,8 @@ const TicketFareAmount = ({ step, setStep }) => {
     saveDataToLocal({ ...formData, ...values });
 
     setStep((currentStep) => currentStep + 1);
+    console.log('step from 4', step);
+    saveStepToLocal((step = step + 1));
   };
 
   return (

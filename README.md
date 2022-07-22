@@ -10,7 +10,17 @@
 - Reservation will confirmed with auto generated 10 digit number.
 - If the Name input matches any Name from the database, it will show error.
 - The input data will save in the localStorage enprypted.
-- Technologies used: React, NodeJs, Express JS, MondoDB, Mongoose, Bootstrap, Crypto Js
+
+### Technologies Used
+
+- React,
+- React Hook Form,
+- NodeJs,
+- Express JS,
+- MondoDB,
+- Mongoose,
+- Bootstrap,
+- Crypto Js etc
 
 ### [Deploy or Live Link](https://trainticketreservation.netlify.app/)
 

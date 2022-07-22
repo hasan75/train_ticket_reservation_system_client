@@ -1,7 +1,9 @@
 import React from 'react';
+import utils from '../../../utils/utils';
 
 const ResponseMsg = ({ response }) => {
-  console.log(response);
+  // console.log(response, 'fromRes Message');
+
   return (
     <div className='col-8'>
       <h3

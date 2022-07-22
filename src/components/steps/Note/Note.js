@@ -6,7 +6,7 @@ import utils from '../../../utils/utils';
 import StepNavigation from '../../StepNavigation/StepNavigation';
 
 const Note = ({ step, setStep }) => {
-  const { saveDataToLocal } = utils;
+  const { saveDataToLocal, saveStepToLocal } = utils;
 
   const { formData, setFormValues } = useFormDataContext();
 
@@ -64,6 +64,7 @@ const Note = ({ step, setStep }) => {
     saveDataToLocal({ ...formData, ...values });
 
     setStep((currentStep) => currentStep + 1);
+    saveStepToLocal((step = step + 1));
   };
   return (
     <form

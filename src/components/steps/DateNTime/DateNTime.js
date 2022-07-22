@@ -1,6 +1,6 @@
 // react-date-picker package is used to take date and time in required format.
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import './DateNTime.css';
 // date picker imports
@@ -12,33 +12,41 @@ import { useFormDataContext } from '../../../hooks/useFormDataContext';
 import utils from '../../../utils/utils';
 
 const DateNTime = ({ step, setStep }) => {
-  const { formData, setFormValues } = useFormDataContext();
+  const { formData, setFormValues, firstRender } = useFormDataContext();
 
-  const { saveDataToLocal } = utils;
+  const { saveDataToLocal, saveStepToLocal } = utils;
 
   //for default values
   const currentDate = new Date();
   const currentTime = new Date();
 
-  // for default values
-  // const [currentDate, setCurrentDate] = useState(new Date());
-  // const [currentTime, setCurrentTime] = useState(new Date());
+  //date and time from the LocalStorage
+
+  // console.log(formData.Date);
+  // console.log(formData.TimeToShow, 'TImeFromLocalStorage');
+
+  const dateFromLocal = new Date(Date.parse(formData.Date));
+  const timeFromLocal = new Date(Date.parse(formData.TimeToShow));
+  // console.log(dateFromLocal);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-    register,
     watch,
   } = useForm({
     mode: 'all',
-    defaultValues: { Date: currentDate, Time: currentTime },
+    defaultValues: {
+      Date: formData.Date ? dateFromLocal : currentDate,
+      Time: formData.Time ? timeFromLocal : currentTime,
+    },
   });
 
   // const dateInput = new Date(currentDate).toLocaleDateString('en-CA');
 
   const onSubmit = (values) => {
     values.Date = new Date(values.Date).toLocaleDateString('en-CA');
+    values.TimeToShow = values.Time;
 
     values.Time = values.Time.toLocaleTimeString([], {
       hourCycle: 'h23',
@@ -47,18 +55,12 @@ const DateNTime = ({ step, setStep }) => {
     });
 
     setFormValues(values);
-
     //to local storage
-    saveDataToLocal(formData);
+    saveDataToLocal({ ...formData, ...values });
 
     setStep((currentStep) => currentStep + 1);
+    saveStepToLocal((step = step + 1));
   };
-
-  const [initailRendering, setInitialRendering] = useState(true);
-
-  useEffect(() => {
-    setInitialRendering(false);
-  }, []);
 
   return (
     <form
@@ -80,7 +82,8 @@ const DateNTime = ({ step, setStep }) => {
                 className='col-12 form-control'
                 dateFormat='yyyy/MM/dd'
                 onChange={(date) => field.onChange(date)}
-                selected={initailRendering ? currentDate : field.value}
+                selected={firstRender ? currentDate : field.value}
+                // selected={formData.Date ? field.value : currentDate}
               />
             )}
           />
@@ -97,7 +100,8 @@ const DateNTime = ({ step, setStep }) => {
             render={({ field }) => (
               <DatePicker
                 className='form-control'
-                selected={initailRendering ? currentTime : field.value}
+                selected={firstRender ? currentTime : field.value}
+                // selected={formData.TimeToShow ? field.value : currentTime}
                 onChange={(time) => field.onChange(time)}
                 showTimeSelect
                 showTimeSelectOnly
