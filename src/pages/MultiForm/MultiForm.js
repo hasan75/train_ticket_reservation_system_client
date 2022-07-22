@@ -13,7 +13,6 @@ const MultiForm = () => {
     setStep,
     res,
     setResFun,
-    firstRender,
     setFirstRender,
   } = useFormDataContext();
 
@@ -32,7 +31,6 @@ const MultiForm = () => {
 
   // render for date and time
   const dateTimeRenderRef = useRef(true);
-  console.log(firstRender, 'firstRenderFromFrom');
 
   useEffect(() => {
     if (dateTimeRenderRef.current) {
